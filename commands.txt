@@ -1,0 +1,8 @@
+create a new project : npm init --y 
+
+Production dependencies :  npm install express dotenv pg pg-hstore sequelize uuid 
+
+Adding the scripts : "start":"node src/app.js ",
+    "dev":"nodemon src/app.js",
+
+development dependency: npm install -D nodemon  

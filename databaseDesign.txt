@@ -1,0 +1,44 @@
+// Users
+// Conversation
+// Messages
+
+table users {
+  id uuid [pk]
+  first_name varchar [not null]
+  last_name varchar [not null]
+  email varchar [not null, unique]
+  password varchar [not null]
+  profile_image varchar 
+  is_active bool [default: true]
+  phone varchar [not null, unique]
+}
+
+table conversations{
+  id uuid [pk]
+  profile_image varchar 
+  name varchar 
+  created_by uuid
+  is_group bool [default: false]
+}
+
+// Tabla Pivote
+table participants{
+  id uuid [pk]
+  user_id uuid [not null] // 3331231231
+  conversation_id uuid [not null]
+  is_admin bool [default: false]
+}
+
+table messages {
+  id uuid [pk]
+  content text [not null]
+  participant_id uuid [not null]
+  status varchar [default: 'Sended']
+}
+
+
+Ref: "users"."id" < "participants"."user_id"
+
+Ref: "conversations"."id" < "participants"."conversation_id"
+
+Ref: "participants"."id" < "messages"."participant_id"
